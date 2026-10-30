@@ -1,5 +1,6 @@
 ﻿using dotenv.net;
 using Microsoft.Extensions.Hosting;
+using NetCord.Gateway;
 using NetCord.Hosting.Gateway;
 
 namespace NetcordS;
@@ -14,9 +15,13 @@ static class Bot
 
         builder.Services.AddDiscordGateway(options =>
         {
-            //options.Intents = ;
+            //intents
+            //options.Intents = GatewayIntents.MessageContent;
+            
+            //token
             options.Token = Environment.GetEnvironmentVariable("Token");
-        }).AddGatewayHandlers(typeof(Bot).Assembly);
+        }
+        ).AddGatewayHandlers(typeof(Bot).Assembly);
         
         var host = builder.Build();
 
